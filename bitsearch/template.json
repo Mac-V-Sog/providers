@@ -1,0 +1,30 @@
+{
+    "id": "bitsearch",
+    "name": "Bitsearch Audio",
+    "version": "1.0.0",
+    "providerType": "api",
+    "description": "Bitsearch torrent search with audio category filter",
+    "search": {
+        "url": "https://bitsearch.to/search?q={query}&category=8",
+        "method": "GET",
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        },
+        "responseType": "html",
+        "resultSelector": "div.search-result",
+        "fields": {
+            "container": "div.bg-white.rounded-lg",
+            "title": "h3 a",
+            "size": "span:contains(MB), span:contains(GB)",
+            "seeds": "span.text-green-600",
+            "leechers": "span.text-red-600",
+            "magnetUrl": "a.bg-green-600, a[href^='magnet:']"
+        }
+    },
+    "notes": [
+        "Bitsearch category 8 = Audio/Audiobooks",
+        "Magnet links are available directly on search results",
+        "Seeds are shown in green, leechers in red",
+        "Very scraper-friendly, no anti-bot measures"
+    ]
+}

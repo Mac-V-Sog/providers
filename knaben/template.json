@@ -1,0 +1,31 @@
+{
+    "id": "knaben",
+    "name": "Knaben",
+    "version": "1.0.0",
+    "providerType": "api",
+    "description": "Knaben.org torrent meta-search API",
+    "search": {
+        "url": "https://api.knaben.org/v1",
+        "method": "POST",
+        "headers": {
+            "Content-Type": "application/json",
+            "User-Agent": "AudiobookPlayer/1.0"
+        },
+        "body": "{\"query\": \"{query}\", \"search_field\": \"title\", \"categories\": [1003000], \"order_by\": \"seeders\", \"order_direction\": \"desc\", \"size\": 50, \"hide_unsafe\": true, \"hide_xxx\": true}",
+        "responseType": "json",
+        "resultSelector": "hits",
+        "fields": {
+            "title": "title",
+            "size": "bytes",
+            "seeds": "seeders",
+            "magnetUrl": "magnetUrl",
+            "source": "tracker"
+        }
+    },
+    "notes": [
+        "Knaben is a meta-search engine",
+        "Uses audiobook category 1003000",
+        "Results sorted by seeders descending",
+        "Hides unsafe and XXX content"
+    ]
+}

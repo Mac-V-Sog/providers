@@ -1,0 +1,29 @@
+{
+    "id": "magnetdl",
+    "name": "MagnetDL",
+    "version": "1.0.0",
+    "providerType": "api",
+    "description": "MagnetDL torrent search - searches by title and author",
+    "search": {
+        "url": "https://magnetdl.homes/lmsearch?q={query}&cat=lmsearch",
+        "method": "GET",
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        },
+        "responseType": "html",
+        "resultSelector": "table.table2 tr",
+        "fields": {
+            "container": "tr",
+            "title": "td.tdleft div.tt-name a",
+            "size": "td:nth-child(3)",
+            "seeds": "td:nth-child(4)",
+            "leechers": "td:nth-child(5)",
+            "magnetUrl": "a[href^='magnet:']"
+        }
+    },
+    "notes": [
+        "MagnetDL provides magnet links directly on search results",
+        "Uses lmsearch category for audiobooks",
+        "Seeds and leechers are shown in table columns"
+    ]
+}

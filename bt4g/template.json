@@ -1,0 +1,16 @@
+{
+    "id": "bt4g",
+    "name": "BT4G Audio",
+    "version": "1.0.0",
+    "providerType": "api",
+    "search": {
+        "url": "https://bt4gprx.com/search?q={title}+{author}&category=audio&page=rss",
+        "method": "GET",
+        "responseType": "rss",
+        "resultSelector": "rss.channel.item",
+        "fields": {
+            "title": "title",
+            "magnetUrl": "link"
+        }
+    }
+}
