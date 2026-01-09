@@ -1,16 +1,46 @@
 {
     "id": "bt4g",
     "name": "BT4G Audio",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "providerType": "api",
+    "description": "BT4G torrent search with audio category filter and file list detection",
     "search": {
-        "url": "https://bt4gprx.com/search?q={title}+{author}&category=audio&page=rss",
+        "url": "https://bt4gprx.com/search?q={title}+{author}&category=audio",
         "method": "GET",
-        "responseType": "rss",
-        "resultSelector": "rss.channel.item",
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        },
+        "responseType": "html",
+        "resultSelector": "div.search-ret",
         "fields": {
-            "title": "title",
-            "magnetUrl": "link"
+            "container": "div.search-ret",
+            "title": "h5.title a",
+            "size": "span:contains(Size)",
+            "seeds": "span:contains(Seeders)",
+            "magnetUrl": "a.btn-primary[href^='magnet:']",
+            "filePreview": "ul.files li"
+        },
+        "pagination": {
+            "type": "page",
+            "param": "page"
         }
+    },
+    "notes": [
+        "BT4G shows first 3 files in search results - use filePreview for archive detection",
+        "Changed from RSS to HTML to access file list",
+        "If filePreview contains .rar/.zip/.7z, warn user before selection",
+        "Audio category filter applied in URL"
+    ],
+    "archiveDetection": {
+        "enabled": true,
+        "field": "filePreview",
+        "archiveExtensions": [
+            ".rar",
+            ".zip",
+            ".7z",
+            ".tar",
+            ".gz"
+        ],
+        "warnOnArchive": true
     }
 }
