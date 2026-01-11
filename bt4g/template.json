@@ -18,7 +18,7 @@
             "size": "span:contains(Size)",
             "seeds": "id=[\"']seeders[\"'][^>]*>(\\d+)",
             "peers": "id=[\"']leechers[\"'][^>]*>(\\d+)",
-            "magnetUrl": "a.btn-primary[href^='magnet:']",
+            "detailUrl": "a.btn-primary",
             "filePreview": "ul.files li"
         },
         "pagination": {
@@ -27,8 +27,9 @@
         }
     },
     "detailPage": {
+        "buildMagnetFromHash": true,
         "magnetLinkSelector": "a[href*='/hash/']",
-        "infoHashPattern": "\\/hash\\/([a-fA-F0-9]{40})",
+        "infoHashPattern": "(?:/hash/|infohash=|xt=urn:btih:)([a-fA-F0-9]{40})",
         "headers": {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
