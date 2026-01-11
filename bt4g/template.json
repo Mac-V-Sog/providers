@@ -25,6 +25,12 @@
             "param": "page"
         }
     },
+    "detailPage": {
+        "magnetLinkSelector": "a[href^='magnet:']",
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+    },
     "notes": [
         "BT4G shows first 3 files in search results - use filePreview for archive detection",
         "Changed from RSS to HTML to access file list",
