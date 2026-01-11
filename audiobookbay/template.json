@@ -13,12 +13,11 @@
             "Accept-Language": "en-US,en;q=0.5"
         },
         "responseType": "html",
-        "resultSelector": "div.post",
+        "resultSelector": "<div[^>]*class=\"[^\"]*post[^\"]*\"[^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>",
         "fields": {
-            "container": "div.post",
-            "title": "h2 a",
-            "detailUrl": "h2 a[href]",
-            "size": ".postContent"
+            "title": "<h2[^>]*>\\s*<a[^>]*href=[\"'][^\"']+[\"'][^>]*>([^<]+)<\\/a>",
+            "detailUrl": "<h2[^>]*>\\s*<a[^>]*href=[\"']([^\"']+)[\"']",
+            "size": "File Size:\\s*([^<]+)"
         }
     },
     "detailPage": {
