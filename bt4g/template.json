@@ -5,7 +5,7 @@
     "providerType": "api",
     "description": "BT4G torrent search with audio category filter and file list detection",
     "search": {
-        "url": "https://bt4gprx.com/search?q={title}+{author}&category=audio",
+        "url": "https://bt4gprx.com/search?q={query}&category=audio",
         "method": "GET",
         "headers": {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"

@@ -11,7 +11,7 @@
             "Content-Type": "application/json",
             "User-Agent": "AudiobookPlayer/1.0"
         },
-        "body": "{\"query\": \"{query}\", \"search_field\": \"title\", \"categories\": [], \"order_by\": \"seeders\", \"order_direction\": \"desc\", \"size\": 50, \"hide_unsafe\": true, \"hide_xxx\": true}",
+        "body": "{\"query\": \"{query}\", \"search_type\": \"score\", \"categories\": [], \"order_by\": \"seeders\", \"order_direction\": \"desc\", \"size\": 50, \"hide_unsafe\": true, \"hide_xxx\": true}",
         "responseType": "json",
         "resultSelector": "hits",
         "fields": {
@@ -23,9 +23,8 @@
         }
     },
     "notes": [
-        "Knaben is a meta-search engine",
-        "Uses audiobook category 1003000",
+        "Reverted to API usage with correct search_type parameter",
         "Results sorted by seeders descending",
-        "Hides unsafe and XXX content"
+        "Data source: Knaben.org API v1"
     ]
 }

@@ -11,14 +11,14 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "div.search-result",
+        "resultSelector": "div:has(a[href^='magnet:'])",
         "fields": {
-            "container": "div.bg-white.rounded-lg",
-            "title": "h3 a",
-            "size": "span:contains(MB), span:contains(GB)",
-            "seeds": "span.text-green-600",
-            "leechers": "span.text-red-600",
-            "magnetUrl": "a.bg-green-600, a[href^='magnet:']"
+            "container": "div",
+            "title": "h5 a",
+            "size": "div:contains('Size') + div",
+            "seeds": "div:contains('Seeders') + div",
+            "leechers": "div:contains('Leechers') + div",
+            "magnetUrl": "a[href^='magnet:']"
         }
     },
     "notes": [
