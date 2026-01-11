@@ -16,8 +16,8 @@
             "container": "tr",
             "title": "td.tdleft div.tt-name a",
             "size": "td:nth-child(3)",
-            "seeds": "td:nth-child(4)",
-            "leechers": "td:nth-child(5)",
+            "seeds": "class=[\"']tdseed[\"'][^>]*>(\\d+)",
+            "leechers": "class=[\"']tdleech[\"'][^>]*>(\\d+)",
             "detailUrl": "td.tdleft div.tt-name a[href]"
         }
     },

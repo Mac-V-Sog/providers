@@ -16,7 +16,8 @@
             "container": "div.search-ret",
             "title": "h5.title a",
             "size": "span:contains(Size)",
-            "seeds": "span:contains(Seeders)",
+            "seeds": "id=[\"']seeders[\"'][^>]*>(\\d+)",
+            "peers": "id=[\"']leechers[\"'][^>]*>(\\d+)",
             "magnetUrl": "a.btn-primary[href^='magnet:']",
             "filePreview": "ul.files li"
         },

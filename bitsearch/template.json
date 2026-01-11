@@ -16,8 +16,8 @@
             "container": "div",
             "title": "h5 a",
             "size": "div:contains('Size') + div",
-            "seeds": "div:contains('Seeders') + div",
-            "leechers": "div:contains('Leechers') + div",
+            "seeds": "text-green-600[\"'][^>]*>.*?(\\d+)",
+            "leechers": "text-red-600[\"'][^>]*>.*?(\\d+)",
             "magnetUrl": "a[href^='magnet:']"
         }
     },
