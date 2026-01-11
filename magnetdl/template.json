@@ -18,11 +18,19 @@
             "size": "td:nth-child(3)",
             "seeds": "td:nth-child(4)",
             "leechers": "td:nth-child(5)",
-            "magnetUrl": "a[href^='magnet:']"
+            "detailUrl": "td.tdleft div.tt-name a[href]"
+        }
+    },
+    "detailPage": {
+        "buildMagnetFromHash": true,
+        "infoHashPattern": "Info Hash:</td>\\s*<td>([a-fA-F0-9]{40})",
+        "trackersPattern": "udp://[^\"'<\\s]+",
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
     },
     "notes": [
-        "MagnetDL provides magnet links directly on search results",
+        "MagnetDL now requires detail page parsing for magnets",
         "Uses lmsearch category for audiobooks",
         "Seeds and leechers are shown in table columns"
     ]
