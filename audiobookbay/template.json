@@ -1,0 +1,38 @@
+{
+    "id": "audiobookbay",
+    "name": "AudiobookBay",
+    "version": "1.0.0",
+    "providerType": "html",
+    "description": "AudiobookBay direct search - scrapes search results and fetches info hash from detail pages",
+    "search": {
+        "url": "https://audiobookbay.lu/?s={query}",
+        "method": "GET",
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5"
+        },
+        "responseType": "html",
+        "resultSelector": "div.post",
+        "fields": {
+            "container": "div.post",
+            "title": "h2 a",
+            "detailUrl": "h2 a[href]",
+            "size": ".postContent"
+        }
+    },
+    "detailPage": {
+        "buildMagnetFromHash": true,
+        "infoHashPattern": "Info Hash:</td>\\s*<td[^>]*>\\s*<span[^>]*>([a-fA-F0-9]{40})",
+        "trackersPattern": "Tracker:</td>\\s*<td[^>]*>([^<]+)",
+        "headers": {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        }
+    },
+    "notes": [
+        "AudiobookBay uses Cloudflare protection - may trigger CAPTCHA for heavy users",
+        "No seeder/leecher info available - will always show as unknown",
+        "Two-step scrape: search page for titles, detail page for info hash",
+        "Do NOT use category filters like cat=undefined - they break results"
+    ]
+}
