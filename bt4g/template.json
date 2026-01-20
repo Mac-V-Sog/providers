@@ -1,7 +1,7 @@
 {
     "id": "bt4g",
     "name": "BT4G Audio",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "providerType": "api",
     "description": "BT4G torrent search with audio category filter - Updated Jan 2026",
     "search": {
