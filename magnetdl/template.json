@@ -11,13 +11,13 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<tr[^>]*bgcolor=[\"']#[A-Fa-f0-9]+[\"'][^>]*>([\\s\\S]*?)</tr>",
+        "resultSelector": "<tr[^>]*bgcolor=[\"']?#[A-Fa-f0-9]+[\"']?[^>]*>([\\s\\S]*?)</tr>",
         "fields": {
-            "title": "<a[^>]*class=[\"'][^\"']*openPopup[^\"']*[\"'][^>]*>([^<]+)</a>",
-            "size": "<td[^>]*class=[\"']tdnormal[\"'][^>]*>([^<]+)</td>",
-            "seeds": "<td[^>]*class=[\"']tdseed[\"'][^>]*>(\\d+)</td>",
-            "peers": "<td[^>]*class=[\"']tdleech[\"'][^>]*>(\\d+)</td>",
-            "detailUrl": "<a[^>]*href=[\"'](/[^\"']+\\.html)[\"']"
+            "title": "class=[\"']?openPopup[\"']?[^>]*>([^<]+)</a>",
+            "size": "<td[^>]*class=[\"']?tdnormal[\"']?[^>]*>([0-9.]+\\s*[GMKT]B)</td>",
+            "seeds": "<td[^>]*class=[\"']?tdseed[\"']?[^>]*>(\\d+)</td>",
+            "peers": "<td[^>]*class=[\"']?tdleech[\"']?[^>]*>(\\d+)</td>",
+            "detailUrl": "<a[^>]*href=[\"']?(/[^\"'>]+\\.html)[\"']?"
         }
     },
     "detailPage": {

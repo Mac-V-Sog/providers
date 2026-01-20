@@ -11,12 +11,12 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*class=\"[^\"]*bg-white[^\"]*rounded-lg[^\"]*shadow-sm[^\"]*border[^\"]*p-6[^\"]*\"[^>]*>([\\s\\S]*?)</div>\\s*</div>\\s*</div>",
+        "resultSelector": "<div[^>]*class=\"[^\"]*bg-white[^\"']*rounded-lg[^\"']*p-6[^\"']*\"[^>]*>([\\s\\S]*?)</div>\\s*</div>",
         "fields": {
             "title": "<h3[^>]*>\\s*<a[^>]*>\\s*([^<]+?)\\s*</a>",
             "size": "<i[^>]*class=\"[^\"]*fa-download[^\"]*\"[^>]*></i>\\s*<span>([^<]+)</span>",
-            "seeds": "text-green-600[^>]*>\\s*<i[^>]*></i>\\s*<span[^>]*>(\\d+)</span>\\s*<span>seeders</span>",
-            "peers": "text-red-600[^>]*>\\s*<i[^>]*></i>\\s*<span[^>]*>(\\d+)</span>\\s*<span>leechers</span>",
+            "seeds": "<span[^>]*class=\"[^\"]*text-green-600[^\"]*\"[^>]*>\\s*<i[^>]*></i>\\s*<span[^>]*>(\\d+)</span>",
+            "peers": "<span[^>]*class=\"[^\"]*text-red-600[^\"]*\"[^>]*>\\s*<i[^>]*></i>\\s*<span[^>]*>(\\d+)</span>",
             "magnetUrl": "href=\"(magnet:\\?[^\"]+)\""
         }
     },
