@@ -1,7 +1,7 @@
 {
     "id": "magnetdl",
     "name": "MagnetDL",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "providerType": "api",
     "description": "MagnetDL torrent search - Updated Jan 2026 (audiobook filter)",
     "search": {
