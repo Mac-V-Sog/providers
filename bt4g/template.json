@@ -1,7 +1,7 @@
 {
     "id": "bt4g",
     "name": "BT4G Audio",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "providerType": "api",
     "description": "BT4G torrent search with audio category filter - Updated Jan 2026",
     "search": {
@@ -11,14 +11,13 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*class=[\"'][^\"']*result-item[^\"']*[\"'][^>]*>([\\s\\S]*?)<h5[^>]*>\\s*<a",
-        "resultSelectorNotes": "Match from result-item div start to next h5>a (captures one result's content). Using lookahead-style capture.",
+        "resultSelector": "<div[^>]*result-item[^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>",
         "fields": {
-            "title": "<a[^>]*class=[\"']text-decoration-none[\"'][^>]*>([^<]+)",
-            "size": "<b[^>]*class=[\"'][^\"']*cpill[^\"']*[\"'][^>]*>([^<]+)",
-            "seeds": "<b[^>]*id=[\"']seeders[\"'][^>]*>(\\d+)",
-            "peers": "<b[^>]*id=[\"']leechers[\"'][^>]*>(\\d+)",
-            "detailUrl": "<a[^>]*class=[\"']text-decoration-none[\"'][^>]*href=[\"']([^\"']+)[\"']"
+            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)<\\/a>",
+            "size": "cpill[^>]*>([0-9.]+\\s*[GMKT]B)",
+            "seeds": "id=[\"']seeders[\"'][^>]*>(\\d+)",
+            "peers": "id=[\"']leechers[\"'][^>]*>(\\d+)",
+            "detailUrl": "href=[\"'](\\/magnet\\/[^\"']+)[\"']"
         },
         "pagination": {
             "type": "page",
@@ -28,27 +27,16 @@
     "detailPage": {
         "buildMagnetFromHash": true,
         "magnetLinkSelector": "a.btn-primary",
-        "infoHashPattern": "(?:/hash/|infohash=|xt=urn:btih:|btih:)([a-fA-F0-9]{40})",
+        "infoHashPattern": "(?:/hash/|btih:)([a-fA-F0-9]{40})",
         "headers": {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
     },
     "notes": [
-        "Updated Jan 2026 based on HTML inspection",
-        "Results in .result-item with title in a.text-decoration-none",
-        "Size in b.cpill (yellow-pill for MB, blue-pill for GB)",
-        "Seeds/leechers have id='seeders'/'leechers'",
-        "Detail page has hash in btn-primary href like /hash/<40char>",
-        "Some detail pages return 404 (deleted content)"
-    ],
-    "archiveDetection": {
-        "enabled": true,
-        "field": "title",
-        "archiveExtensions": [
-            ".rar",
-            ".zip",
-            ".7z"
-        ],
-        "warnOnArchive": true
-    }
+        "v1.3 - Simplified regex patterns",
+        "detailUrl: just match href=/magnet/...",
+        "title: h5 > a > text",
+        "size: cpill class followed by size value",
+        "seeds/peers: by id attribute"
+    ]
 }
