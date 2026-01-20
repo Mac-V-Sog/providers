@@ -1,7 +1,7 @@
 {
     "id": "bitsearch",
     "name": "Bitsearch Audio",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "providerType": "api",
     "description": "Bitsearch torrent search with audio category filter - Updated Jan 2026",
     "search": {
@@ -11,13 +11,13 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*class=[\"'][^\"']*bg-white rounded-lg shadow-sm border[^\"']*[\"'][^>]*>([\\s\\S]*?)</div>\\s*</div>\\s*</div>",
+        "resultSelector": "<div[^>]*class=\"[^\"]*bg-white[^\"]*rounded-lg[^\"]*shadow-sm[^\"]*border[^\"]*p-6[^\"]*\"[^>]*>([\\s\\S]*?)</div>\\s*</div>\\s*</div>",
         "fields": {
-            "title": "<h3[^>]*>\\s*<a[^>]*>([^<]+)</a>",
-            "size": "<i[^>]*class=[\"'][^\"']*fa-download[^\"']*[\"'][^>]*></i>\\s*<span>([^<]+)</span>",
-            "seeds": "text-green-600[^>]*>\\s*<i[^>]*></i>\\s*<span>(\\d+)\\s*seeders</span>",
-            "leechers": "text-red-600[^>]*>\\s*<i[^>]*></i>\\s*<span>(\\d+)\\s*leechers</span>",
-            "magnetUrl": "href=[\"'](magnet:\\?xt=urn:btih:[^\"']+)[\"']"
+            "title": "<h3[^>]*>\\s*<a[^>]*>\\s*([^<]+?)\\s*</a>",
+            "size": "<i[^>]*class=\"[^\"]*fa-download[^\"]*\"[^>]*></i>\\s*<span>([^<]+)</span>",
+            "seeds": "text-green-600[^>]*>\\s*<i[^>]*></i>\\s*<span[^>]*>(\\d+)</span>\\s*<span>seeders</span>",
+            "peers": "text-red-600[^>]*>\\s*<i[^>]*></i>\\s*<span[^>]*>(\\d+)</span>\\s*<span>leechers</span>",
+            "magnetUrl": "href=\"(magnet:\\?[^\"]+)\""
         }
     },
     "notes": [

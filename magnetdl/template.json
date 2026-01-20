@@ -1,11 +1,11 @@
 {
     "id": "magnetdl",
     "name": "MagnetDL",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "providerType": "api",
-    "description": "MagnetDL torrent search - Updated Jan 2026",
+    "description": "MagnetDL torrent search - Updated Jan 2026 (audiobook filter)",
     "search": {
-        "url": "https://magnetdl.homes/lmsearch?q={query}&cat=lmsearch",
+        "url": "https://magnetdl.homes/lmsearch?q={query}%20audiobook&cat=lmsearch",
         "method": "GET",
         "headers": {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
