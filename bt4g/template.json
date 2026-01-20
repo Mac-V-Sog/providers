@@ -1,11 +1,11 @@
 {
     "id": "bt4g",
     "name": "BT4G Audio",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "providerType": "api",
     "description": "BT4G torrent search with audio category filter - Updated Jan 2026",
     "search": {
-        "url": "https://bt4gprx.com/search?q={query}&category=audio",
+        "url": "https://bt4gprx.com/search?q={query}&category=audio&orderby=seeders",
         "method": "GET",
         "headers": {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -13,17 +13,17 @@
             "Accept-Language": "en-US,en;q=0.9"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*result-item[^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>",
+        "resultSelector": "<div[^>]*class=\"[^\"]*list-group-item[^\"]*result-item[^\"]*\"[^>]*>([\\s\\S]*?)</div>\\s*(?=<div[^>]*class=\"[^\"]*list-group-item|$)",
         "fields": {
-            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)<\\/a>",
-            "size": "cpill[^>]*>([0-9.]+\\s*[GMKT]B)",
-            "seeds": "id=[\"']seeders[\"'][^>]*>(\\d+)",
-            "peers": "id=[\"']leechers[\"'][^>]*>(\\d+)",
-            "detailUrl": "href=[\"'](\\/magnet\\/[^\"']+)[\"']"
+            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)</a>",
+            "size": "<b[^>]*class=\"[^\"]*cpill[^\"]*yellow-pill[^\"]*\"[^>]*>([^<]+)</b>",
+            "seeds": "<b[^>]*id=\"seeders\"[^>]*>(\\d+)</b>",
+            "peers": "<b[^>]*id=\"leechers\"[^>]*>(\\d+)</b>",
+            "detailUrl": "<a[^>]*href=\"(/magnet/[^\"]+)\"[^>]*>"
         },
         "pagination": {
             "type": "page",
-            "param": "page"
+            "param": "p"
         }
     },
     "detailPage": {
