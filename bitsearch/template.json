@@ -1,9 +1,9 @@
 {
     "id": "bitsearch",
     "name": "Bitsearch Audio",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "providerType": "api",
-    "description": "Bitsearch torrent search with audio category filter",
+    "description": "Bitsearch torrent search with audio category filter - Updated Jan 2026",
     "search": {
         "url": "https://bitsearch.to/search?q={query}&category=8",
         "method": "GET",
@@ -11,19 +11,20 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*class=[\"']bg-white rounded-lg shadow-sm border[^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>\\s*<\\/div>\\s*<\\/div>",
+        "resultSelector": "<div[^>]*class=[\"'][^\"']*bg-white rounded-lg shadow-sm border[^\"']*[\"'][^>]*>([\\s\\S]*?)</div>\\s*</div>\\s*</div>",
         "fields": {
-            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)</a>",
-            "size": "<span>(\\d+(?:\\.\\d+)?\\s*(?:GB|MB|KB))</span>",
-            "seeds": "text-green-600[^>]*>\\s*<svg[^>]*>\\s*</svg>\\s*<span>(\\d+) seeders</span>",
-            "leechers": "text-red-600[^>]*>\\s*<svg[^>]*>\\s*</svg>\\s*<span>(\\d+) leechers</span>",
+            "title": "<h3[^>]*>\\s*<a[^>]*>([^<]+)</a>",
+            "size": "<i[^>]*class=[\"'][^\"']*fa-download[^\"']*[\"'][^>]*></i>\\s*<span>([^<]+)</span>",
+            "seeds": "text-green-600[^>]*>\\s*<i[^>]*></i>\\s*<span>(\\d+)\\s*seeders</span>",
+            "leechers": "text-red-600[^>]*>\\s*<i[^>]*></i>\\s*<span>(\\d+)\\s*leechers</span>",
             "magnetUrl": "href=[\"'](magnet:\\?xt=urn:btih:[^\"']+)[\"']"
         }
     },
     "notes": [
+        "Updated Jan 2026 based on HTML inspection",
         "Bitsearch category 8 = Audio/Audiobooks",
         "Magnet links are available directly on search results",
-        "Seeds are shown in green, leechers in red",
-        "Very scraper-friendly, no anti-bot measures"
+        "Title in h3 > a, size after fa-download icon",
+        "Seeds in span.text-green-600, leechers in span.text-red-600"
     ]
 }

@@ -1,9 +1,9 @@
 {
     "id": "magnetdl",
     "name": "MagnetDL",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "providerType": "api",
-    "description": "MagnetDL torrent search - searches by title and author",
+    "description": "MagnetDL torrent search - Updated Jan 2026",
     "search": {
         "url": "https://magnetdl.homes/lmsearch?q={query}&cat=lmsearch",
         "method": "GET",
@@ -11,26 +11,29 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<tr[^>]*bgcolor[^>]*>([\\s\\S]*?)<\\/tr>",
+        "resultSelector": "<tr[^>]*bgcolor=[\"']#[A-Fa-f0-9]+[\"'][^>]*>([\\s\\S]*?)</tr>",
         "fields": {
-            "title": "class=[\"']openPopup[\"'][^>]*>([^<]+)</a>",
-            "size": "<td[^>]*class=[\"']tdnormal[\"'][^>]*>[^<]+</td>\\s*<td[^>]*class=[\"']tdnormal[\"'][^>]*>([^<]+)</td>",
+            "title": "<a[^>]*class=[\"'][^\"']*openPopup[^\"']*[\"'][^>]*>([^<]+)</a>",
+            "size": "<td[^>]*class=[\"']tdnormal[\"'][^>]*>([^<]+)</td>",
             "seeds": "<td[^>]*class=[\"']tdseed[\"'][^>]*>(\\d+)</td>",
-            "leechers": "<td[^>]*class=[\"']tdleech[\"'][^>]*>(\\d+)</td>",
+            "peers": "<td[^>]*class=[\"']tdleech[\"'][^>]*>(\\d+)</td>",
             "detailUrl": "<a[^>]*href=[\"'](/[^\"']+\\.html)[\"']"
         }
     },
     "detailPage": {
         "buildMagnetFromHash": true,
-        "infoHashPattern": "Info Hash:</td>\\s*<td>([a-fA-F0-9]{40})",
+        "infoHashPattern": "(?:Info Hash:</td>\\s*<td>|urn:btih:|hash/)([a-fA-F0-9]{40})",
         "trackersPattern": "udp://[^\"'<\\s]+",
         "headers": {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
     },
     "notes": [
-        "MagnetDL now requires detail page parsing for magnets",
-        "Uses lmsearch category for audiobooks",
-        "Seeds and leechers are shown in table columns"
+        "Updated Jan 2026 based on HTML inspection",
+        "MagnetDL requires detail page for magnet links",
+        "Uses lmsearch category for general search",
+        "Title in div.tt-name > a.openPopup",
+        "Table rows use bgcolor for alternating colors",
+        "Seeds in td.tdseed, leechers in td.tdleech"
     ]
 }

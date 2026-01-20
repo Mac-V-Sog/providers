@@ -1,9 +1,9 @@
 {
     "id": "bt4g",
     "name": "BT4G Audio",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "providerType": "api",
-    "description": "BT4G torrent search with audio category filter and file list detection",
+    "description": "BT4G torrent search with audio category filter - Updated Jan 2026",
     "search": {
         "url": "https://bt4gprx.com/search?q={query}&category=audio",
         "method": "GET",
@@ -11,14 +11,14 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*class=[\"']list-group-item result-item[\"'][^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>",
+        "resultSelector": "<div[^>]*class=[\"'][^\"']*result-item[^\"']*[\"'][^>]*>([\\s\\S]*?)<h5[^>]*>\\s*<a",
+        "resultSelectorNotes": "Match from result-item div start to next h5>a (captures one result's content). Using lookahead-style capture.",
         "fields": {
-            "title": "<a[^>]*title=[\"']([^\"']+)[\"']",
-            "size": "Total Size: <b[^>]*>([^<]+)<\\/b>",
-            "seeds": "Seeders: <b[^>]*>(\\d+)<\\/b>",
-            "peers": "Leechers: <b[^>]*>(\\d+)<\\/b>",
-            "detailUrl": "<a[^>]*href=[\"'](/magnet/[^\"']+)[\"']",
-            "filePreview": "li"
+            "title": "<a[^>]*class=[\"']text-decoration-none[\"'][^>]*>([^<]+)",
+            "size": "<b[^>]*class=[\"'][^\"']*cpill[^\"']*[\"'][^>]*>([^<]+)",
+            "seeds": "<b[^>]*id=[\"']seeders[\"'][^>]*>(\\d+)",
+            "peers": "<b[^>]*id=[\"']leechers[\"'][^>]*>(\\d+)",
+            "detailUrl": "<a[^>]*class=[\"']text-decoration-none[\"'][^>]*href=[\"']([^\"']+)[\"']"
         },
         "pagination": {
             "type": "page",
@@ -27,27 +27,27 @@
     },
     "detailPage": {
         "buildMagnetFromHash": true,
-        "magnetLinkSelector": "a[href*='/hash/']",
-        "infoHashPattern": "(?:/hash/|infohash=|xt=urn:btih:)([a-fA-F0-9]{40})",
+        "magnetLinkSelector": "a.btn-primary",
+        "infoHashPattern": "(?:/hash/|infohash=|xt=urn:btih:|btih:)([a-fA-F0-9]{40})",
         "headers": {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         }
     },
     "notes": [
-        "BT4G shows first 3 files in search results - use filePreview for archive detection",
-        "Changed from RSS to HTML to access file list",
-        "If filePreview contains .rar/.zip/.7z, warn user before selection",
-        "Audio category filter applied in URL"
+        "Updated Jan 2026 based on HTML inspection",
+        "Results in .result-item with title in a.text-decoration-none",
+        "Size in b.cpill (yellow-pill for MB, blue-pill for GB)",
+        "Seeds/leechers have id='seeders'/'leechers'",
+        "Detail page has hash in btn-primary href like /hash/<40char>",
+        "Some detail pages return 404 (deleted content)"
     ],
     "archiveDetection": {
         "enabled": true,
-        "field": "filePreview",
+        "field": "title",
         "archiveExtensions": [
             ".rar",
             ".zip",
-            ".7z",
-            ".tar",
-            ".gz"
+            ".7z"
         ],
         "warnOnArchive": true
     }
