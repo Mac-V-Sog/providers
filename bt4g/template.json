@@ -1,14 +1,20 @@
 {
     "id": "bt4g",
     "name": "BT4G Audio",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "providerType": "api",
     "description": "BT4G torrent search with audio category filter - Updated Jan 2026",
     "search": {
         "url": "https://bt4gprx.com/search?q={query}&category=audio",
         "method": "GET",
         "headers": {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Encoding": "gzip, deflate, br",
+            "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "same-origin",
+            "Sec-Fetch-Dest": "document"
         },
         "responseType": "html",
         "resultSelector": "<div[^>]*result-item[^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>",
@@ -29,14 +35,21 @@
         "magnetLinkSelector": "a.btn-primary",
         "infoHashPattern": "(?:/hash/|btih:)([a-fA-F0-9]{40})",
         "headers": {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://bt4gprx.com/",
+            "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-Site": "same-origin",
+            "Sec-Fetch-Dest": "document",
+            "Sec-Ch-Ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
+            "Sec-Ch-Ua-Mobile": "?0",
+            "Sec-Ch-Ua-Platform": "\"Windows\""
         }
     },
     "notes": [
-        "v1.3 - Simplified regex patterns",
-        "detailUrl: just match href=/magnet/...",
-        "title: h5 > a > text",
-        "size: cpill class followed by size value",
-        "seeds/peers: by id attribute"
+        "v1.4 - Added full browser headers to bypass security check",
+        "Referer header required for detail pages",
+        "Sec-Fetch-* headers mimic real browser behavior"
     ]
 }
