@@ -11,14 +11,14 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*class=[\"']search-ret[\"'][^>]*>([\\s\\S]*?)<\\/div>",
+        "resultSelector": "<div[^>]*class=[\"']list-group-item result-item[\"'][^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>",
         "fields": {
-            "title": "<h5[^>]*>\\s*<a[^>]*title=[\"'][^\"']+[\"'][^>]*>([^<]+)<\\/a>",
-            "size": "<span[^>]*>Size[^<]*<\\/span>\\s*<span[^>]*>([^<]+)<\\/span>",
-            "seeds": "id=[\"']seeders[\"'][^>]*>(\\d+)",
-            "peers": "id=[\"']leechers[\"'][^>]*>(\\d+)",
-            "detailUrl": "<a[^>]*class=[\"'][^\"']*btn-primary[^\"']*[\"'][^>]*href=[\"']([^\"']+)[\"']",
-            "filePreview": "ul.files li"
+            "title": "<a[^>]*title=[\"']([^\"']+)[\"']",
+            "size": "Total Size: <b[^>]*>([^<]+)<\\/b>",
+            "seeds": "Seeders: <b[^>]*>(\\d+)<\\/b>",
+            "peers": "Leechers: <b[^>]*>(\\d+)<\\/b>",
+            "detailUrl": "<a[^>]*href=[\"'](/magnet/[^\"']+)[\"']",
+            "filePreview": "li"
         },
         "pagination": {
             "type": "page",

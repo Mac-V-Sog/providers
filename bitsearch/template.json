@@ -11,14 +11,13 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "div:has(a[href^='magnet:'])",
+        "resultSelector": "<div[^>]*class=[\"']bg-white rounded-lg shadow-sm border[^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>\\s*<\\/div>\\s*<\\/div>",
         "fields": {
-            "container": "div",
-            "title": "h5 a",
-            "size": "div:contains('Size') + div",
-            "seeds": "text-green-600[\"'][^>]*>.*?(\\d+)",
-            "leechers": "text-red-600[\"'][^>]*>.*?(\\d+)",
-            "magnetUrl": "a[href^='magnet:']"
+            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)</a>",
+            "size": "<span>(\\d+(?:\\.\\d+)?\\s*(?:GB|MB|KB))</span>",
+            "seeds": "text-green-600[^>]*>\\s*<svg[^>]*>\\s*</svg>\\s*<span>(\\d+) seeders</span>",
+            "leechers": "text-red-600[^>]*>\\s*<svg[^>]*>\\s*</svg>\\s*<span>(\\d+) leechers</span>",
+            "magnetUrl": "href=[\"'](magnet:\\?xt=urn:btih:[^\"']+)[\"']"
         }
     },
     "notes": [
