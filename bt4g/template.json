@@ -15,7 +15,7 @@
         "responseType": "html",
         "resultSelector": "<div[^>]*class=\"[^\"]*list-group-item[^\"]*result-item[^\"]*\"[^>]*>([\\s\\S]*?)</div>\\s*(?=<div[^>]*class=\"[^\"]*list-group-item|$)",
         "fields": {
-            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)</a>",
+            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)</a>|<a[^>]*class=\"[^\"]*title[^\"]*\"[^>]*>([^<]+)</a>|<a[^>]*href=\"/magnet/[^\"]+\"[^>]*>([^<]+)</a>",
             "size": "<b[^>]*class=\"[^\"]*cpill[^\"]*yellow-pill[^\"]*\"[^>]*>([^<]+)</b>",
             "seeds": "<b[^>]*id=\"seeders\"[^>]*>(\\d+)</b>",
             "peers": "<b[^>]*id=\"leechers\"[^>]*>(\\d+)</b>",
