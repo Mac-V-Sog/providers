@@ -1,9 +1,9 @@
 {
     "id": "bitsearch",
     "name": "Bitsearch Audio",
-    "version": "1.7.0",
+    "version": "1.8.0",
     "providerType": "api",
-    "description": "Bitsearch torrent search - searches both Audiobooks (cat 8) and Other Audio (cat 1/sub 1) - Feb 2026",
+    "description": "Bitsearch torrent search - Audiobooks (cat 8) and Other Audio (cat 1/sub 1) - Feb 2026",
     "search": {
         "url": "https://bitsearch.to/search?q={query}&category=8",
         "additionalUrls": [
@@ -16,17 +16,18 @@
         "responseType": "html",
         "resultSelector": "<div[^>]*class=\"[^\"]*bg-white[^\"]*rounded-lg[^\"]*shadow[^\"]*\"[^>]*>([\\s\\S]*?)</div>\\s*(?=<div[^>]*class=\"[^\"]*bg-white[^\"]*rounded-lg[^\"]*shadow|$)",
         "fields": {
-            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)</a>|<a[^>]*href=\"/torrent/[^\"]*\"[^>]*>([^<]+)</a>",
+            "title": "<a[^>]*href=\"/torrent/[^\"]*\"[^>]*>([^<]+)</a>",
             "detailUrl": "href=\"(/torrent/[^\"]+)\"",
-            "size": "fa-hdd[^>]*></i>\\s*<span[^>]*>([^<]+)</span>|<span>([0-9.]+\\s*[KMGT]?B)</span>",
+            "size": "fa-download[^>]*></i>\\s*<span>([^<]+)</span>",
             "seeds": "text-green-600[^>]*>[\\s\\S]*?font-medium[^>]*>(\\d+)",
             "peers": "text-red-600[^>]*>[\\s\\S]*?font-medium[^>]*>(\\d+)",
             "magnetUrl": "href=\"(magnet:\\?xt=urn:btih:[^\"]+)\""
         }
     },
     "notes": [
-        "v1.7.0 Feb 2026: Fixed resultSelector to capture full result cards (~12K chars each)",
-        "Seeds/Peers: Uses simplified regex to find font-medium spans inside colored containers",
-        "Searches BOTH category 8 (Audiobooks) and category 1/subCategory 1 (Other Audio)"
+        "v1.8.0 Feb 2026: Fixed size regex - uses fa-download icon (not fa-hdd)",
+        "Size structure: fa-download></i><span>284.22 MB</span>",
+        "Seeds: text-green-600 container > font-medium > number",
+        "Peers: text-red-600 container > font-medium > number"
     ]
 }
