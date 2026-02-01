@@ -1,9 +1,9 @@
 {
     "id": "bitsearch",
     "name": "Bitsearch Audio",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "providerType": "api",
-    "description": "Bitsearch torrent search - searches both Audiobooks (cat 8) and Other Audio (cat 1/sub 1) - Updated Feb 2026",
+    "description": "Bitsearch torrent search - searches both Audiobooks (cat 8) and Other Audio (cat 1/sub 1) - Feb 2026",
     "search": {
         "url": "https://bitsearch.to/search?q={query}&category=8",
         "additionalUrls": [
@@ -14,20 +14,19 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*class=\"[^\"]*search-result[^\"]*\"[^>]*>([\\s\\S]*?)</div>\\s*(?=<div[^>]*class=\"[^\"]*search-result|$)",
+        "resultSelector": "<div[^>]*class=\"[^\"]*bg-white[^\"]*rounded-lg[^\"]*shadow[^\"]*\"[^>]*>([\\s\\S]*?)</div>\\s*(?=<div[^>]*class=\"[^\"]*bg-white[^\"]*rounded-lg[^\"]*shadow|$)",
         "fields": {
             "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)</a>|<a[^>]*href=\"/torrent/[^\"]*\"[^>]*>([^<]+)</a>",
+            "detailUrl": "href=\"(/torrent/[^\"]+)\"",
             "size": "fa-hdd[^>]*></i>\\s*<span[^>]*>([^<]+)</span>|<span>([0-9.]+\\s*[KMGT]?B)</span>",
-            "seeds": "text-green-600[^>]*>[\\s\\S]*?<span[^>]*class=\"[^\"]*font-medium[^\"]*\"[^>]*>(\\d+)</span>",
-            "peers": "text-red-600[^>]*>[\\s\\S]*?<span[^>]*class=\"[^\"]*font-medium[^\"]*\"[^>]*>(\\d+)</span>",
+            "seeds": "text-green-600[^>]*>[\\s\\S]*?font-medium[^>]*>(\\d+)",
+            "peers": "text-red-600[^>]*>[\\s\\S]*?font-medium[^>]*>(\\d+)",
             "magnetUrl": "href=\"(magnet:\\?xt=urn:btih:[^\"]+)\""
         }
     },
     "notes": [
-        "v1.6.0 Feb 2026: Fixed seeds/peers regex to match actual HTML structure",
-        "Seeds: text-green-600 > i.fa-arrow-up > span.font-medium (number)",
-        "Peers: text-red-600 > i.fa-arrow-down > span.font-medium (number)",
-        "Searches BOTH category 8 (Audiobooks) and category 1/subCategory 1 (Other Audio)",
-        "Uses additionalUrls feature to search multiple categories in parallel"
+        "v1.7.0 Feb 2026: Fixed resultSelector to capture full result cards (~12K chars each)",
+        "Seeds/Peers: Uses simplified regex to find font-medium spans inside colored containers",
+        "Searches BOTH category 8 (Audiobooks) and category 1/subCategory 1 (Other Audio)"
     ]
 }
