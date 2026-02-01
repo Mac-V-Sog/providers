@@ -1,7 +1,7 @@
 {
     "id": "bitsearch",
     "name": "Bitsearch Audio",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "providerType": "api",
     "description": "Bitsearch torrent search - searches both Audiobooks (cat 8) and Other Audio (cat 1/sub 1) - Updated Feb 2026",
     "search": {
@@ -14,21 +14,20 @@
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         },
         "responseType": "html",
-        "resultSelector": "<div[^>]*class=\"[^\"]*bg-white[^\"']*rounded-lg[^\"']*p-6[^\"']*\"[^>]*>([\\s\\S]*?)</div>\\s*(?=<div|$)",
+        "resultSelector": "<div[^>]*class=\"[^\"]*search-result[^\"]*\"[^>]*>([\\s\\S]*?)</div>\\s*(?=<div[^>]*class=\"[^\"]*search-result|$)",
         "fields": {
-            "title": "<h3[^>]*>\\s*<a[^>]*>\\s*([^<]+?)\\s*</a>",
-            "size": "<i[^>]*class=\"[^\"]*fa-download[^\"]*\"[^>]*></i>\\s*<span>([^<]+)</span>",
-            "seeds": "<span[^>]*class=\"[^\"]*text-green-600[^\"]*\"[^>]*>\\s*<i[^>]*></i>\\s*<span[^>]*>(\\d+)</span>",
-            "peers": "<span[^>]*class=\"[^\"]*text-red-600[^\"]*\"[^>]*>\\s*<i[^>]*></i>\\s*<span[^>]*>(\\d+)</span>",
+            "title": "<h5[^>]*>\\s*<a[^>]*>([^<]+)</a>|<a[^>]*href=\"/torrent/[^\"]*\"[^>]*>([^<]+)</a>",
+            "size": "fa-hdd[^>]*></i>\\s*<span[^>]*>([^<]+)</span>|<span>([0-9.]+\\s*[KMGT]?B)</span>",
+            "seeds": "text-green-600[^>]*>[\\s\\S]*?<span[^>]*class=\"[^\"]*font-medium[^\"]*\"[^>]*>(\\d+)</span>",
+            "peers": "text-red-600[^>]*>[\\s\\S]*?<span[^>]*class=\"[^\"]*font-medium[^\"]*\"[^>]*>(\\d+)</span>",
             "magnetUrl": "href=\"(magnet:\\?xt=urn:btih:[^\"]+)\""
         }
     },
     "notes": [
-        "v1.5.0 Feb 2026: Now searches BOTH category 8 (Audiobooks) and category 1/subCategory 1 (Other Audio)",
-        "Uses additionalUrls feature to search multiple categories in parallel",
-        "Results are deduplicated by magnet/hash",
-        "Magnet links are available directly on search results",
-        "Title in h3 > a, size after fa-download icon",
-        "Seeds in span.text-green-600, leechers in span.text-red-600"
+        "v1.6.0 Feb 2026: Fixed seeds/peers regex to match actual HTML structure",
+        "Seeds: text-green-600 > i.fa-arrow-up > span.font-medium (number)",
+        "Peers: text-red-600 > i.fa-arrow-down > span.font-medium (number)",
+        "Searches BOTH category 8 (Audiobooks) and category 1/subCategory 1 (Other Audio)",
+        "Uses additionalUrls feature to search multiple categories in parallel"
     ]
 }
