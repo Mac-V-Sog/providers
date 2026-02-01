@@ -1,9 +1,9 @@
 {
     "id": "knaben",
     "name": "Knaben",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "providerType": "api",
-    "description": "Knaben.org torrent meta-search API",
+    "description": "Knaben.org torrent meta-search API - Audiobooks category - Fixed Feb 2026",
     "search": {
         "url": "https://api.knaben.org/v1",
         "method": "POST",
@@ -11,7 +11,7 @@
             "Content-Type": "application/json",
             "User-Agent": "AudiobookPlayer/1.0"
         },
-        "body": "{\"query\": \"{query}\", \"search_type\": \"score\", \"categories\": [], \"order_by\": \"seeders\", \"order_direction\": \"desc\", \"size\": 50, \"hide_unsafe\": true, \"hide_xxx\": true}",
+        "body": "{\"query\": \"{query}\", \"search_type\": \"100%\", \"search_field\": \"title\", \"categories\": [1003000], \"order_by\": \"seeders\", \"order_direction\": \"desc\", \"size\": 50, \"hide_unsafe\": true, \"hide_xxx\": true}",
         "responseType": "json",
         "resultSelector": "hits",
         "fields": {
@@ -23,7 +23,9 @@
         }
     },
     "notes": [
-        "Reverted to API usage with correct search_type parameter",
+        "Fixed Feb 2026: Added category 1003000 (Audiobooks)",
+        "Changed search_type from 'score' to '100%' for better matching",
+        "Added search_field parameter set to 'title' as required by API",
         "Results sorted by seeders descending",
         "Data source: Knaben.org API v1"
     ]
