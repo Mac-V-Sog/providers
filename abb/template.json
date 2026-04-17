@@ -16,14 +16,14 @@
             "q": "{query}"
         },
         "responseType": "json",
-        "resultSelector": "hits",
+        "resultSelector": "results",
         "fields": {
             "title": "title",
             "size": "size",
             "seeds": "seeders",
-            "magnetUrl": "magnetUrl",
+            "magnetUrl": "magnetLink",
             "infoHash": "infoHash",
-            "source": "tracker"
+            "source": "indexer"
         }
     },
     "notes": [
