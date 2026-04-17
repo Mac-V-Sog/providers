@@ -1,0 +1,34 @@
+{
+    "id": "johnsmith-prowlarr",
+    "name": "My Private Prowlarr",
+    "version": "1.0.0",
+    "providerType": "api",
+    "description": "Private ABB + BitMagnet Aggregator via Cloudflare Worker",
+    "search": {
+        "url": "https://frosty-mud-b0e9.peanut-dash.workers.dev",
+        "method": "GET",
+        "headers": {
+            "Content-Type": "application/json",
+            "X-Custom-Auth": "audiobook-secure-access-2026",
+            "User-Agent": "AudiobookPlayer/1.0"
+        },
+        "urlParameters": {
+            "q": "{query}"
+        },
+        "responseType": "json",
+        "resultSelector": "results",
+        "fields": {
+            "title": "title",
+            "size": "size",
+            "seeds": "seeders",
+            "magnetUrl": "magnetLink",
+            "source": "indexer"
+        }
+    },
+    "notes": [
+        "Aggregates AudiobookBay (Jackett) and BitMagnet",
+        "Uses 24-hour Cloudflare KV Caching",
+        "Filters for Category 3000 (Audio)",
+        "Automatically rebuilds clean magnet links from InfoHashes"
+    ]
+}
