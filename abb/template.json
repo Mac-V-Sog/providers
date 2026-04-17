@@ -1,28 +1,29 @@
 {
     "id": "johnsmith-prowlarr",
     "name": "My Private Prowlarr",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "providerType": "api",
     "description": "Private ABB + BitMagnet Aggregator via Cloudflare Worker",
     "search": {
         "url": "https://frosty-mud-b0e9.peanut-dash.workers.dev",
         "method": "GET",
         "headers": {
-            "Content-Type": "application/json",
             "X-Custom-Auth": "audiobook-secure-access-2026",
-            "User-Agent": "AudiobookPlayer/1.0"
+            "User-Agent": "AudiobookPlayer/1.0",
+            "Accept": "application/json"
         },
         "urlParameters": {
             "q": "{query}"
         },
         "responseType": "json",
-        "resultSelector": "results",
+        "resultSelector": "hits",
         "fields": {
             "title": "title",
             "size": "size",
             "seeds": "seeders",
-            "magnetUrl": "magnetLink",
-            "source": "indexer"
+            "magnetUrl": "magnetUrl",
+            "infoHash": "infoHash",
+            "source": "tracker"
         }
     },
     "notes": [
