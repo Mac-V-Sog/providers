@@ -1,9 +1,9 @@
 {
-    "id": "johnsmith-prowlarr",
-    "name": "My Private Prowlarr",
-    "version": "1.2.0",
+    "id": "audiobook-index",
+    "name": "Audiobook Index",
+    "version": "1.3.0",
     "providerType": "api",
-    "description": "Private ABB + BitMagnet Aggregator via Cloudflare Worker",
+    "description": "Audiobook search source",
     "search": {
         "url": "https://frosty-mud-b0e9.peanut-dash.workers.dev",
         "method": "GET",
@@ -26,10 +26,5 @@
             "source": "indexer"
         }
     },
-    "notes": [
-        "Aggregates AudiobookBay (Jackett) and BitMagnet",
-        "Uses 24-hour Cloudflare KV Caching",
-        "Filters for Category 3000 (Audio)",
-        "Automatically rebuilds clean magnet links from InfoHashes"
-    ]
+    "notes": []
 }
