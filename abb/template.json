@@ -1,7 +1,7 @@
 {
     "id": "audiobook-index",
     "name": "Audiobook Index",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "providerType": "api",
     "description": "Audiobook search source",
     "search": {
@@ -13,7 +13,8 @@
             "Accept": "application/json"
         },
         "urlParameters": {
-            "q": "{query}"
+            "q": "{query}",
+            "categories": "3000"
         },
         "responseType": "json",
         "resultSelector": "results",
@@ -26,5 +27,7 @@
             "source": "indexer"
         }
     },
-    "notes": []
+    "notes": [
+        "Uses Prowlarr audio category 3000 for ABB-backed searches"
+    ]
 }
